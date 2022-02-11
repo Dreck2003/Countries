@@ -35,7 +35,7 @@ const NavBar = (props) => {
   useEffect(()=>{
 
     if(!queries.search){
-      
+       
       dispatch(getCountries(queries.search));
 
     }
