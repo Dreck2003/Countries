@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Nav from './Nav';
-import Main from './Main';
+import NavBar from './NavBar.js';
+import Main from './Main.js';
 
 
 
@@ -9,7 +9,7 @@ const Home=(props)=>{
 
     return (
       <Div>
-        <Nav/>
+        <NavBar/>
         <Main />
       </Div>
     );

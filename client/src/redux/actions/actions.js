@@ -45,7 +45,7 @@ export const getCountries=(name)=>{
             return fetch(`http://localhost:3001/countries/?name=${name}`)
               .then((res) => res.json())
               .then((data) => { 
-                  console.log('los paises que matchean son: ',data)
+                  // console.log('los paises que matchean son: ',data)
                 dispatch({
                   type: GET_ALL_COUNTRIES,
                   payload: data,

@@ -2,6 +2,9 @@ const { Router, application } = require('express');
 const allRouter = require('./allCountries');
 const IDCountry = require('./IDCountry');
 const nameCountry = require('./nameCoun');
+
+
+const order=require('./order');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -16,6 +19,7 @@ const router = Router();
 router.use('/', allRouter);
 router.use("/", nameCountry);
 router.use('/',IDCountry);
+router.use('/',order);
 
 router.use((error,req,res,next) => {
     console.log('HA ocurrido un error')
