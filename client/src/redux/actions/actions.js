@@ -5,6 +5,7 @@ export const GET_ID_COUNTRY = "GET_ID_COUNTRY";
 export const SEARCH_NAME_COUNTRY= "SEARCH_NAME_COUNTRY";
 export const ANTERIOR = "ANTERIOR";
 export const SIGUIENTE = "SIGUIENTE";
+export const FILTROS='FILTROS';
 
 
 //ACTIONS PARA CAMBIAR EL NODO:
@@ -45,6 +46,8 @@ export const getCountries=(name)=>{
             return fetch(`http://localhost:3001/countries/?name=${name}`)
               .then((res) => res.json())
               .then((data) => { 
+                console.log("por nombre: ", data);
+
                   // console.log('los paises que matchean son: ',data)
                 dispatch({
                   type: GET_ALL_COUNTRIES,
@@ -80,28 +83,14 @@ export const getCountry=(id)=>{
     }
 }
 
-// export const searchCountry=(name)=>{
+export const filter=(filtros)=>{
 
-//     return function(dispatch){
+  return function(dispatch){
 
-//         if(name){
-//             return fetch(`http://localhost:3001/countries/?name=${name}`)
-//               .then((res) => res.json())
-//               .then((data) => {
-//                 dispatch({
-//                   type: SEARCH_NAME_COUNTRY,
-//                   payload: data,
-//                 });
-//               })
-//               .catch((err) => {
-//                 console.log("searchCountry-error: ", err);
-//               });
-//         }else{
+      return fetch('');
+  }
 
-//         }
-
-//     }
-// }
+}
 
 
 

@@ -13,11 +13,12 @@ const busqueda = (event, queries, set) => {
   event.preventDefault();
   // console.log(event.target.value);
   const { value, name } = event.target;
-  console.log(value, " : ", name);
+//   console.log(value, " : ", name);
   set({
     ...queries,
     [name]: value,
   });
+
 };
 
 
@@ -29,13 +30,19 @@ const Filtrados=(props)=>{
     const [queries, setQueries] = useState({
       search: "",
     });
+
+
+
+
+
     const dispatch = useDispatch();
 
     useEffect(() => {
       if (!queries.search) {
         dispatch(getCountries(queries.search));
+
       }
-    }, []);
+    }, [queries]);
 
     return (
       <Container>

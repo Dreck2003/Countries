@@ -1,8 +1,6 @@
-// import {Link} from 'react-router-dom';
 import Filtrados from './Filtrados.js';
 //=============================================\\
 import styled from "styled-components";
-// import Select from "./Select";
 import Paginado from "./Paginado";
 
 
@@ -10,9 +8,6 @@ import Paginado from "./Paginado";
 
 
 const NavBar = (props) => {
-
-  
-
 
   return (
     <Container>

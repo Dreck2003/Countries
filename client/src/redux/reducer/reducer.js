@@ -11,9 +11,15 @@ import {Lista} from '../../functions/Lista';
 
 
 const initialState ={
-    allCountries: {}, //esto me trae todo los paises y va a ser una lista es una lista
-    viewCountry:{},
-    country:{},
+    allCountries: {}, //esto me trae todo los paises y va a ser una lista es una lista;
+    viewCountry:{}, //Esto es el nodo al que el paginado esta subscrito y el main muestra;
+    country:{}, //Este es para el country que se muestra en el countryCard;
+    propiedades:{
+      continent:'',
+      activity:'',
+      order:'',
+
+    },
 }
 
 
@@ -67,12 +73,6 @@ const initialState ={
             ...action.payload,
           },
         };
-
-      // case SEARCH_NAME_COUNTRY:
-      //   return {
-      //     ...state,
-      //     searchCountries: action.payload,
-      //   };
 
 
       //ESTOS SON REDUCER PARA EL PREVIOUS Y NEXT:
