@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const { get } = require('../routes');
 
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -25,6 +26,12 @@ module.exports = (sequelize) => {
       set(nombre){
         let name=nombre.toLowerCase();
         this.setDataValue('name',name)
+      },
+      get(){
+        let nombre= this.getDataValue('name');
+        let first=nombre[0].toUpperCase();
+        let ultimo=nombre.slice(1);
+        return first+ultimo;
       }
     },
     img: {

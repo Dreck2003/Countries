@@ -63,42 +63,42 @@ export const filterActivity = (value) => {
 
 
 
-export const getCountries=(name)=>{
-    return function(dispatch){
+// export const getCountries=(name)=>{
+//     return function(dispatch){
         
-        if(!name){
-            return fetch("http://localhost:3001/countries")
-              .then((res) => res.json())
-              .then((data) => {
-                dispatch({
-                  type: GET_ALL_COUNTRIES,
-                  payload: data,
-                });
-              })
-              .catch((err) => {
-                console.log("error all countries", err);
-              });
-        }else{
-            return fetch(`http://localhost:3001/countries/?name=${name}`)
-              .then((res) => res.json())
-              .then((data) => { 
-                console.log("por nombre: ", data);
+//         if(!name){
+//             return fetch("http://localhost:3001/countries")
+//               .then((res) => res.json())
+//               .then((data) => {
+//                 dispatch({
+//                   type: GET_ALL_COUNTRIES,
+//                   payload: data,
+//                 });
+//               })
+//               .catch((err) => {
+//                 console.log("error all countries", err);
+//               });
+//         }else{
+//             return fetch(`http://localhost:3001/countries/?name=${name}`)
+//               .then((res) => res.json())
+//               .then((data) => { 
+//                 console.log("por nombre: ", data);
 
-                  // console.log('los paises que matchean son: ',data)
-                dispatch({
-                  type: GET_ALL_COUNTRIES,
-                  payload: data,
-                });
-              })
-              .catch((err) => {
-                console.log("error all countries", err);
-              });
+//                   // console.log('los paises que matchean son: ',data)
+//                 dispatch({
+//                   type: GET_ALL_COUNTRIES,
+//                   payload: data,
+//                 });
+//               })
+//               .catch((err) => {
+//                 console.log("error all countries", err);
+//               });
 
-        }
+//         }
 
-    }
+//     }
 
-}
+// }
 
 export const getCountry=(id)=>{
 
@@ -120,6 +120,7 @@ export const getCountry=(id)=>{
 }
 
 export const filter=(filtros)=>{
+  // console.log('FILTER: lOS FILTROS SON:  ',filtros)
 
   return function(dispatch){
 
@@ -128,6 +129,7 @@ export const filter=(filtros)=>{
       )
       .then((res)=>res.json())
       .then(data=>{
+        // console.log('filter: ',data)
         dispatch({
           type: FILTROS,
           payload:data,

@@ -44,12 +44,12 @@ Lista.prototype.add=function(data){
 
 
 export  function crearLista(payload) {
-    console.log('el payload de crear lista es: ',payload)
+    // console.log('el payload de crear lista es: ',payload)
 
   let COUNTRIES = [];
   if (!Array.isArray(payload)) {
     COUNTRIES.push(payload);
-    console.log('Los countries: ',COUNTRIES);
+    // console.log('Los countries: ',COUNTRIES);
   } else COUNTRIES = [...payload];
 
   let nuevaLista = new Lista();
@@ -71,7 +71,7 @@ export  function crearLista(payload) {
     nuevaLista.add(sliceArray);
     inicio = final;
   }
-  console.log(nuevaLista);
+  // console.log(nuevaLista);
   return nuevaLista;
 }
 

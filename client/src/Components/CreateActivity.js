@@ -11,6 +11,7 @@ const CreateActivity = (props) => {
        <Fieldset/> 
         
         <input type="button" value="Crear"  className='crear'/>
+        <input type="button" value="CREATE"/>
         <div>
           <span>barra de progreso</span>
         </div>

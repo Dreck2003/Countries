@@ -1,27 +1,12 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import Countrycard from './CountryCard';//importamos las cartas:
-import { getCountries } from "../redux/actions/actions";
-import {useDispatch,useSelector,} from 'react-redux';
+import {useSelector,} from 'react-redux';
 
 
 
 const Main=(props)=>{
 
-
-  const dispatch = useDispatch();
   const estado=useSelector(state=>state.viewCountry);
-  // console.log('El estado: ',estado)
-    
-
-
-  useEffect(()=>{
-    
-    if(!Object.keys(estado).length){
-      dispatch(getCountries());
-    }
-    
-  },[])
   
   console.log('se renderiza el main')
 

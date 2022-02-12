@@ -5,12 +5,15 @@ import Information from './Information';
 import ShowActivities from './ShowActivities';
 import {useDispatch,useSelector} from 'react-redux';
 import {getCountry} from '../redux/actions/actions';
+import { filter } from "../redux/actions/actions.js";
 
 function CountryDescription(props) {
 
   const id = useParams().country;
   const dispatch = useDispatch();
   const estado=useSelector(state=>state.country);
+  const viewEstado=useSelector(state=>state.filtros);
+  console.log(viewEstado)
 
 
   useEffect(() => {
@@ -23,14 +26,17 @@ function CountryDescription(props) {
     <Main>
       {console.log("se monto el card")}
       <section>
-        <div>
+        <div> 
           <img src={estado.img} alt="flag" />
         </div>
         <ShowActivities />
       </section>
-      <Information info={{ ...estado}} />
+      <Information info={{ ...estado }} />
 
-      <button>
+      <button onClick={(e) => {
+        viewEstado.name='';
+        dispatch(filter(viewEstado))
+        }}>
         <Link to="/home">BACK</Link>
       </button>
     </Main>

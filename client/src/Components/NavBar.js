@@ -11,7 +11,7 @@ const NavBar = (props) => {
 
   return (
     <Container>
-      {console.log("se monto el nav")}
+      {/* {console.log("se monto el nav")} */}
       <Nav>
         <Text>
           COUNTRIES APP

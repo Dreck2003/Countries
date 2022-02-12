@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Select from "./Select";
-import { getCountries } from "../redux/actions/actions";
-import { useDispatch } from "react-redux";
+// import { getCountries } from "../redux/actions/actions";
+import { useDispatch,useSelector } from "react-redux";
 
-import { useState, useEffect } from "react";
+
+import { useEffect } from "react";
 import {
   ordenar,
   filterContinente,
   filterName,
   filterActivity,
+  filter,
 } from "../redux/actions/actions.js";
 
 // import { useDispatch } from "react-redux";
@@ -21,12 +23,11 @@ const Filtrados = (props) => {
 
 
   const dispatch = useDispatch();
+  const estado=useSelector(state=>state.filtros)
 
-  // useEffect(() => {
-  //   if (!queries.search) {
-  //     dispatch(getCountries(queries.search));
-  //   }
-  // }, [queries]);
+  useEffect(() => {
+    dispatch(filter(estado))
+  }, [estado]);
 
   return (
     <Container>
@@ -36,18 +37,29 @@ const Filtrados = (props) => {
         name="search"
         onChange={(event) => dispatch(filterName(event.target.value))}
       />
-      <button >
-        BUSCAR
-      </button>
+      {/* <button>BUSCAR</button> */}
       <Link to="/createActivity">
         <button>CREAR ACTIVIDAD</button>
       </Link>
       <Select
         label="Continent:"
-        menu={["Europa", "America", "Asia", "Africa", "Oceania"]}
+        menu={[
+          "Europe",
+          "North America",
+          "South America",
+          "Asia",
+          "Africa",
+          "Oceania",
+        ]}
         metodo={filterContinente}
+        // envio={filter}
       />
-      <Select label="Activity" menu={["actividad1"]} metodo={filterActivity} />
+      <Select
+        label="Activity"
+        menu={["actividad1"]}
+        metodo={filterActivity}
+        // envio={filter}
+      />
       <Select menu={["A-Zㅤ", "Z-Aㅤ"]} metodo={ordenar} />
     </Container>
   );

@@ -1,6 +1,6 @@
 
 import {
-  GET_ALL_COUNTRIES,
+  // GET_ALL_COUNTRIES,
   GET_ID_COUNTRY,
   SIGUIENTE,
   ANTERIOR,
@@ -11,7 +11,7 @@ import {
   FILTROS,
 } from "../actions/actions";
 
-import {Lista,crearLista} from '../../functions/Lista';
+import {crearLista} from '../../functions/Lista';
 
 
 const initialState ={
@@ -31,15 +31,15 @@ const initialState ={
  const Reducer=(state=initialState,action) =>{
 
     switch (action.type) {
-      case GET_ALL_COUNTRIES:
+      // case GET_ALL_COUNTRIES:
 
-        const nuevaLista=crearLista(action.payload)
+      //   const nuevaLista=crearLista(action.payload)
 
-        return {
-          ...state,
-          allCountries: nuevaLista,
-          viewCountry: { ...nuevaLista.head },
-        };
+      //   return {
+      //     ...state,
+      //     allCountries: nuevaLista,
+      //     viewCountry: { ...nuevaLista.head },
+      //   };
 
       case GET_ID_COUNTRY:
         return {
@@ -78,6 +78,8 @@ const initialState ={
       //Reducers para el filtrado de las busquedas:
 
       case NAME:
+
+
         return {
           ...state,
           filtros:{
@@ -91,7 +93,7 @@ const initialState ={
           ...state,
           filtros: {
             ...state.filtros,
-            order: action.payload,
+            order: action.payload.trim(),
           },
         };
 
@@ -128,13 +130,14 @@ const initialState ={
       
       case FILTROS:
         const listaNueva = crearLista(action.payload);
+        // console.log('los filtros son: ',state.filtros);
 
         return {
           ...state,
           allCountries: listaNueva,
           viewCountry: { ...listaNueva.head },
         };
-
+        
       default:
         return { ...state };
     }
