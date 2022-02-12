@@ -35,8 +35,8 @@ function CountryDescription(props) {
 
       <button onClick={(e) => {
         viewEstado.name='';
-        dispatch(filter(viewEstado))
-        }}>
+        dispatch(filter(viewEstado))}
+        }>
         <Link to="/home">BACK</Link>
       </button>
     </Main>
