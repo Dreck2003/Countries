@@ -52,13 +52,11 @@ nameCountry.get("/countries", (req, res, next) => {
   const { name,continent,activity,order} = req.query; // Seria el name de la query
 
 
-  if ( name || continent || activity || order) {
-
     return Countries.findAll({
       order:returnOrder(order),
       where: {
         name: {
-          [Op.iLike]: `%${name}%`,
+          [Op.iLike]: name ?`%${name}%`:'%%',
         },
         continent: {
           [Op.iLike]: continent || '%%',
@@ -75,12 +73,6 @@ nameCountry.get("/countries", (req, res, next) => {
         next(err);
       });
       
-  }
-
-  console.log("EL nombre de la query es: ", name);
-
-  console.log("la query esta vacia");
-  return next({ mess: "no hay query" });
   
 });
 

@@ -1,18 +1,22 @@
 
 import styled from 'styled-components';
+// import {useState} from 'react';
+import { useDispatch } from 'react-redux';
 
 
 const Select=(props)=>{
   // console.log(props)
+  const dispatch = useDispatch();
 
     return (
       <Contenedor>
         <div>
-          <select>
-            <option>{props.label}</option>
-            { props.menu && props.menu.map((item,index)=>(
-              <option key={index}>{item}</option>
-            ))}
+          <select onChange={(e) => dispatch(props.metodo(e.target.value))}>
+            {props.label && <option>{props.label}</option>}
+            {props.menu &&
+              props.menu.map((item, index) => (
+                <option key={index}>{item}</option>
+              ))}
           </select>
         </div>
       </Contenedor>

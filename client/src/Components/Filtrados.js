@@ -1,79 +1,63 @@
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Select from "./Select";
 import { getCountries } from "../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
 import { useState, useEffect } from "react";
-
+import {
+  ordenar,
+  filterContinente,
+  filterName,
+  filterActivity,
+} from "../redux/actions/actions.js";
 
 // import { useDispatch } from "react-redux";
 
-const busqueda = (event, queries, set) => {
-  event.preventDefault();
-  // console.log(event.target.value);
-  const { value, name } = event.target;
-//   console.log(value, " : ", name);
-  set({
-    ...queries,
-    [name]: value,
-  });
 
+
+const Filtrados = (props) => {
+
+
+
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   if (!queries.search) {
+  //     dispatch(getCountries(queries.search));
+  //   }
+  // }, [queries]);
+
+  return (
+    <Container>
+      <input
+        type="search"
+        placeholder="Buscar paises..."
+        name="search"
+        onChange={(event) => dispatch(filterName(event.target.value))}
+      />
+      <button >
+        BUSCAR
+      </button>
+      <Link to="/createActivity">
+        <button>CREAR ACTIVIDAD</button>
+      </Link>
+      <Select
+        label="Continent:"
+        menu={["Europa", "America", "Asia", "Africa", "Oceania"]}
+        metodo={filterContinente}
+      />
+      <Select label="Activity" menu={["actividad1"]} metodo={filterActivity} />
+      <Select menu={["A-Zㅤ", "Z-Aㅤ"]} metodo={ordenar} />
+    </Container>
+  );
 };
 
-
-
-
-const Filtrados=(props)=>{
-
-
-    const [queries, setQueries] = useState({
-      search: "",
-    });
-
-
-
-
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      if (!queries.search) {
-        dispatch(getCountries(queries.search));
-
-      }
-    }, [queries]);
-
-    return (
-      <Container>
-        <input
-          type="search"
-          placeholder="Buscar paises..."
-          name="search"
-          onChange={(event) => busqueda(event, queries, setQueries)}
-        />
-        <button onClick={(event) => dispatch(getCountries(queries.search))}>
-          BUSCAR
-        </button>
-        <Link to="/createActivity">
-          <button>CREAR ACTIVIDAD</button>
-        </Link>
-        <Select
-          label="Continent:"
-          menu={["Europa", "America", "Asia", "Africa", "Oceania"]}
-        />
-        <Select label="Activity" menu={["actividad1"]} />
-        <Select label="Ordenar por: " menu={["A-Zㅤ", "Z-Aㅤ"]} />
-      </Container>
-    );
-}
-
 const Container = styled.div`
-
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
-  padding:0px 20px;
+  padding: 0px 20px;
 
   input {
     padding: 10px;
@@ -102,7 +86,5 @@ const Container = styled.div`
     cursor: pointer;
   }
 `;
-
-
 
 export default Filtrados;

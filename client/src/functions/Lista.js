@@ -43,3 +43,36 @@ Lista.prototype.add=function(data){
 }
 
 
+export  function crearLista(payload) {
+    console.log('el payload de crear lista es: ',payload)
+
+  let COUNTRIES = [];
+  if (!Array.isArray(payload)) {
+    COUNTRIES.push(payload);
+    console.log('Los countries: ',COUNTRIES);
+  } else COUNTRIES = [...payload];
+
+  let nuevaLista = new Lista();
+  let content = Math.ceil(COUNTRIES.length / 9);
+
+  let inicio = 0,
+    final = 0,
+    sliceArray = 0;
+
+  for (let i = 1; i < content + 1; i++) {
+    final = inicio + 9;
+
+    if (i === content) {
+      sliceArray = COUNTRIES.slice(inicio, COUNTRIES.length);
+      // console.log('el corte final: ',sliceArray);
+    } else {
+      sliceArray = COUNTRIES.slice(inicio, final);
+    }
+    nuevaLista.add(sliceArray);
+    inicio = final;
+  }
+  console.log(nuevaLista);
+  return nuevaLista;
+}
+
+
