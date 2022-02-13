@@ -42,7 +42,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activities,Countries } = sequelize.models;
 
-  console.log(sequelize.models);
   // console.log("Modelos: ", Activity, Country);
 
 
@@ -50,11 +49,10 @@ const { Activities,Countries } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Activities.belongsToMany(Countries,{through:'activity_country'});
-Countries.belongsToMany(Activities,{through:'activity_country'})
+Activities.belongsToMany(Countries, { through: "Activities_Country" });
+Countries.belongsToMany(Activities, { through: "Activities_Country" });
 
-
-
+  console.log('Modelos: ',sequelize.models);
 
 
 module.exports = {

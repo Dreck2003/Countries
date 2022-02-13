@@ -6,7 +6,7 @@ const ShowActivities=(props)=>{
     return (
       <Activities>
         {props.actividades ? (
-          <h1>HAY ACTIVIDADES</h1>
+          <h1>{props.activities}</h1>
         ) : (
           <h1>NO HAY ACTIVIDADES PARA ESTE COUNTRY</h1>
         )}

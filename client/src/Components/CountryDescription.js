@@ -29,7 +29,7 @@ function CountryDescription(props) {
         <div> 
           <img src={estado.img} alt="flag" />
         </div>
-        <ShowActivities />
+        <ShowActivities activities={estado.activities}/>
       </section>
       <Information info={{ ...estado }} />
 

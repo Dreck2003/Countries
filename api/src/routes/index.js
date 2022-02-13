@@ -18,12 +18,12 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.use("/", activity);
-router.use('/', allRouter);
+// router.use('/', allRouter);
 router.use("/", nameCountry);
 router.use('/',IDCountry);
 
 router.use((error,req,res,next) => {
-    console.log('HA ocurrido un error')
+    console.log('llego al errores: HA ocurrido un error')
 
     return res.status('500').send({
         message:error.mess || error,

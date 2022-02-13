@@ -1,13 +1,16 @@
 
 const {Router}= require('express');
 const express = require('express');
-const {Countries} = require('../db')
+const {Countries} = require('../db.js')
 
 
 const IDCountry=express.Router();
+    console.log('Country',Countries);
 
 
 IDCountry.get('/countries/:idPais',(req,res,next) => {
+
+    console.log('paso por id Country')
 
     const {idPais}=req.params;
     console.log(idPais)

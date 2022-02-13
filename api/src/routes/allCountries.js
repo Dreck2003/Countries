@@ -37,9 +37,6 @@ const{Countries} = require('../db');
                           ? country.population
                           : 0,
                       })
-                      .then(data=>{
-                        console.log('SE CREO EL PAIS')
-                      })
                       .catch(err=>{
                         console.log('EL PAIS DEL ERROR ES: ',country)
                         console.log('SUCEDIO UN GRAVISIMO ERROR',err)

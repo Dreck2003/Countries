@@ -1,5 +1,5 @@
 
-const {Countries}= require('../db');
+const {Countries,Activities}= require('../db');
 const {Router}= require("express");
 const express = require('express');
 const {Op} = require('sequelize')
@@ -54,6 +54,7 @@ nameCountry.get("/countries", (req, res, next) => {
 
     return Countries.findAll({
       order:returnOrder(order),
+      include: Activities,
       where: {
         name: {
           [Op.iLike]: name ?`%${name}%`:'%%',
