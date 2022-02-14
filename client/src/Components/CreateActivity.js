@@ -1,9 +1,16 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Fieldset,Modal} from './ModalCountry';
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {search_Activities} from '../redux/actions/actions.js';
+import { useNavigate } from "react-router-dom";
+
+console.log(useNavigate);
 
 const CreateActivity = (props) => {
+
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
 
   const [features, setFeatures] = useState({
     name: "",
@@ -200,7 +207,8 @@ const CreateActivity = (props) => {
   
   return (
     <Container>
-      {console.log(features)}
+      {/* {console.log(features)} */}
+      <button className="btn-back" onClick={()=>navigate('/home')}>BACK</button>
       <Formulario
         id="activity"
         autoComplete="off"
@@ -269,12 +277,23 @@ const CreateActivity = (props) => {
                 body: JSON.stringify(features),
               })
                 .then((res) => res.json())
-                .then((data) => console.log(data))
+                .then((data) => {
+                  console.log(data)
+                  if(data.res !=='ya existe una actividad con ese nombre!'){
+                    dispatch(search_Activities());
+                      alert("Actividad creada");
+                    setTimeout(() =>{
+                    navigate("/home");
+
+                    },1000)
+                  }
+                  alert(data.res)
+                })
                 .catch((err) => {
                   console.log("error en post activity", err);
                 });
             }else{
-              alert('Faltan campos a completar!')
+              alert('Faltan campos a completar! o hay errores 😒')
             }
           }
         }
@@ -294,10 +313,26 @@ const Container = styled.div`
 
   width: 100%;
   min-height: 100vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .btn-back {
+    background-color: #9dbdcd;
+    padding: 7px 10px 7px 13px;
+    position: absolute;
+    color: #6e5d48;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    border-radius: 76px 7px 7px 76px;
+    font-weight: bold;
+    &:hover {
+      color: #d5dba3;
+    }
+  }
 `;
 
 const Formulario = styled.form`

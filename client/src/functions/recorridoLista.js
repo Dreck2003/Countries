@@ -1,6 +1,8 @@
 
  const searchList=(lista)=>{
 
+    //Esto me devuelve un array de una lista
+
     let current=lista.head;
     let arrayLista=[];
 
@@ -24,27 +26,6 @@
 export default searchList;
 
 
-function* cortes(countries){
-
-    let array=[];
-    array.push(countries[0]);
-
-    for(let i=1;i<countries.length;i++){
-
-        if(i % 50===0){
-            //Llego hasta el multiplo de 83
-            yield array;
-            array=[];
-        }
-        if (i === countries.length-1){
-        array.push(countries[i]);
-            return array;
-        }
-
-        array.push(countries[i]);
-    }
-
-}
 
 
 

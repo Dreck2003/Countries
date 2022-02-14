@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-
 const Select=(props)=>{
   // console.log(props)
   const dispatch = useDispatch();
@@ -14,13 +13,27 @@ const Select=(props)=>{
         {/* {console.log('se renderiza el select')} */}
         <div>
           <select onChange={(e) => {
-            // console.log('valor del evento: ',e.target,' : ',e.target.value)
+            console.log('valor del evento: ',e.target,' : ',e.target.value);
+            if(props.envio){
+              // console.log('se ejecuta el envio de actividades')
+              if(e.target.value==='Activity' && props.metodo && props.estado){
+
+                dispatch(props.metodo(props.estado));
+
+              }else{
+                dispatch(props.envio(e.target.value));
+
+              }
+            }
+            else if(props.metodo){
             dispatch(props.metodo(e.target.value));
+
+            }
             }}>
             {props.label && <option>{props.label}</option>}
             {props.menu &&
               props.menu.map((item, index) => (
-                <option key={index}>{item}</option>
+                <option key={Math.random()+index}>{item}</option>
               ))}
           </select>
         </div>

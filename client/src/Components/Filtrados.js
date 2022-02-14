@@ -1,20 +1,21 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Select from "./Select";
-// import { getCountries } from "../redux/actions/actions";
 import { useDispatch,useSelector } from "react-redux";
-
-
 import { useEffect } from "react";
+
+//importar funciones: 
+
+
+import Select from "./Select";
 import {
   ordenar,
   filterContinente,
   filterName,
-  filterActivity,
+  search_Activities,
+  actividad,
   filter,
 } from "../redux/actions/actions.js";
 
-// import { useDispatch } from "react-redux";
 
 
 
@@ -24,13 +25,16 @@ const Filtrados = (props) => {
 
   const dispatch = useDispatch();
   const estado=useSelector(state=>state.filtros)
+  const actividades=useSelector(state=>state.actividades)
 
   useEffect(() => {
-    dispatch(filter(estado))
+    dispatch(filter(estado));
+    dispatch(search_Activities());
   }, [estado]);
 
   return (
     <Container>
+      {console.log('algo paso en el filtrado')}
       <input
         type="search"
         placeholder="Buscar paises..."
@@ -52,15 +56,18 @@ const Filtrados = (props) => {
           "Oceania",
         ]}
         metodo={filterContinente}
-        // envio={filter}
       />
       <Select
         label="Activity"
-        menu={["actividad1"]}
-        metodo={filterActivity}
-        // envio={filter}
+        menu={actividades}
+        metodo={filter}
+        estado={estado}
+        envio={actividad}
       />
-      <Select menu={["A-Zㅤ", "Z-Aㅤ"]} metodo={ordenar} />
+      <Select
+        menu={["A-Zㅤ", "Z-Aㅤ", "max", "min"]}
+        metodo={ordenar}
+      />
     </Container>
   );
 };

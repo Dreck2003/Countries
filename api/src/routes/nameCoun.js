@@ -10,31 +10,31 @@ const returnOrder=(order)=>{
   switch (order) {
     case "max":
       //es para la poblacion:
-      return [['population','DESC']];
+      return [["population", "DESC"]];
 
     case "min":
       //es para la poblacion:
 
-      // return [['population','ASC']]; ESTO SE FILTRARA EN EL FRONT;
+      // return [['population','ASC']];// ESTO SE FILTRARA EN EL FRONT;
       return [];
 
-    case "A-Z":
+    case "A-Zㅤ":
       //es para el name a-z
 
-    return [
-      ["name", "ASC"],
-      // ["population", "ASC"],
-    ];  
+      return [
+        ["name", "ASC"],
+        // ["population", "ASC"],
+      ];
 
-    case "Z-A":
+    case "Z-Aㅤ":
       //es para el name z-a
-    return [
-      ["name",'DESC'],
-      // ["population", 'DESC'],
-    ];   
+      return [
+        ["name", "DESC"],
+        // ["population", 'DESC'],
+      ];
 
     default:
-      return []
+      return [];
   }
 
 }
@@ -49,20 +49,20 @@ nameCountry.get("/countries", (req, res, next) => {
 
     console.log('paso por el nameCountry');
 
-  const { name,continent,activity,order} = req.query; // Seria el name de la query
+  const { name,continent,order} = req.query; // Seria el name de la query
 
 
     return Countries.findAll({
       order:returnOrder(order),
       include: Activities,
       where: {
-        name: {
-          [Op.iLike]: name ?`%${name}%`:'%%',
-        },
-        continent: {
-          [Op.iLike]: continent || '%%',
-        },
-      },
+            name: {
+              [Op.iLike]: name ? `%${name}%` : "%%",
+            },
+            continent: {
+              [Op.iLike]: continent || "%%",
+            },
+          },
     })
       .then((countries) => {
         // console.log("backend: ", countries);

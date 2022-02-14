@@ -1,10 +1,17 @@
-//Estos son las constantes de acciones:
 
+
+//Estos son las constantes de acciones:
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_ID_COUNTRY = "GET_ID_COUNTRY";
 export const SEARCH_NAME_COUNTRY= "SEARCH_NAME_COUNTRY";
 export const ANTERIOR = "ANTERIOR";
 export const SIGUIENTE = "SIGUIENTE";
+
+//acciones para el ordenamiento quicksort:
+export const ORDENAMIENTO = "ORDENAMIENTO";
+export const SEARCH_ACTIVITIES = "SEARCH_ACTIVITIES";
+
+
 
 //Acciones para el estado de la búsqueda:
 
@@ -12,6 +19,8 @@ export const ORDER = "ORDER";
 export const CONTINENT = "CONTINENT";
 export const NAME= "NAME";
 export const ACTIVITY= "ACTIVITY";
+export const ACTIVIDAD = "ACTIVIDAD";
+
 
 //Busqueda: 
 export const FILTROS = "FILTROS";
@@ -140,6 +149,48 @@ export const filter=(filtros)=>{
       })
   }
 
+}
+
+export const actividad=(name)=>{
+  console.log('se hace el envio a la ruta activity: ',name);
+  if(name ==='Activity') name='';
+
+  return function(dispatch){
+
+    return fetch(`http://localhost:3001/activity?nombre=${name}`)
+      .then(res=>res.json())
+      .then(data=>{
+        console.log('llego la respuesta: ',data)
+        dispatch({
+          type: ACTIVIDAD,
+          payload: data, //Un arreglo de actividades
+        });
+      })
+      .catch(err=>{
+        console.log('activity fectch: ',err)
+      })
+
+  }
+
+
+}
+
+export const search_Activities=()=>{
+
+  return function(dispatch){
+
+    return fetch(`http://localhost:3001/activity?nombre=`)
+      .then(res=>res.json())
+      .then(data=>{
+        dispatch({
+          type:SEARCH_ACTIVITIES,
+          payload:data
+        })
+      })
+      .catch(err=>{
+        console.log('pedido de cantidad de activities fallo: ',err);
+      })
+  }
 }
 
 
