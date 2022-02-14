@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 // import Boton from './BotonPage.js';
 import {goBack,goNext} from '../redux/actions/actions.js';
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 
 
 
@@ -11,15 +11,40 @@ import {useDispatch} from 'react-redux'
 const Paginado=(props)=>{
 
   const dispatch=useDispatch();
+  const estado=useSelector(state=>state.viewCountry);
 
     return (
       <Section>
-        <Botoncito onClick={(event)=>dispatch(goBack())}>
+        {/* <Botoncito
+          color={!estado.previous && "#24536ac2"}
+          onClick={(event) => dispatch(goBack())}
+        >
           PREVIOUS
-        </Botoncito>
-        <Botoncito onClick={(event)=>dispatch(goNext())}>
-          NEXT
-        </Botoncito>
+        </Botoncito> */}
+        {/* {console.log(estado)} */}
+        {estado.previous ? (
+          <Botoncito onClick={(event) => dispatch(goBack())}>
+            PREVIOUS
+          </Botoncito>
+        ) : (
+          <Botoncito
+            style={{ backgroundColor: "#42758e" }}
+            onClick={(event) => dispatch(goBack())}
+          >
+            PREVIOUS
+          </Botoncito>
+        )}
+
+        {estado.next ? (
+          <Botoncito onClick={(event) => dispatch(goNext())}>NEXT</Botoncito>
+        ) : (
+          <Botoncito
+            style={{ backgroundColor: "#42758e" }}
+            onClick={(event) => dispatch(goNext())}
+          >
+            NEXT
+          </Botoncito>
+        )}
       </Section>
     );
 
@@ -43,6 +68,7 @@ const Botoncito = styled.button`
   background-color: #039be5;
   color: #f8f6f2;
   font-weight: bold;
+  transition: background-color 0.7s ease ;
 `;
 
 

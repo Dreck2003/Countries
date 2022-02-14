@@ -11,7 +11,7 @@ activity.post("/activity", (req, res, next) => {
   console.log("paso por el ACTIVITY");
   const { ids,name, dificultad, duracion, season } = req.body;
   //ids-->[id1,id2,id3...]
-  // console.log(name, dificultad, duracion,ids);
+  console.log('name: ',name,'dificul: ', dificultad,'duation: ', duracion,'ids: ',ids);
 
   
   return Activities.findOrCreate({
@@ -44,7 +44,7 @@ activity.post("/activity", (req, res, next) => {
 
           })
 
-          return res.json({res:'un pais no existe'});
+          return res.json({res:'todo ok'});
           
         }else{
           return res.json({res:'ya existe una actividad con ese nombre!'});

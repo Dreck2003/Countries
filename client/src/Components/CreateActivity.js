@@ -7,9 +7,9 @@ const CreateActivity = (props) => {
 
   const [features, setFeatures] = useState({
     name: "",
-    dificultad: "",
-    duracion: "",
-    season: "",
+    dificultad: 5,
+    duracion: '',
+    season: 0,
     ids:[]
   });
   const [error, setError] = useState({
@@ -249,18 +249,35 @@ const CreateActivity = (props) => {
           className="btn-crear"
           onClick={(e) => {
             e.preventDefault();
-            fetch("http://localhost:3001/activity", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                name: "dikson",
-                dificultad: "500",
-                duracion: 7,
-              }),
-            })
-              .then((res) => res.json())
-              .then((data) => console.log(data));
-          }}
+
+            let flag=true;
+
+            for(const index in error){
+              // console.log(!!error[index])
+              if(error[index]) {
+                flag=false;
+                break;
+              }
+            }
+            // console.log(' hay errores: ',flag)
+            //Si flag es true --> no hay errores
+
+            if(flag){
+              fetch("http://localhost:3001/activity", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(features),
+              })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((err) => {
+                  console.log("error en post activity", err);
+                });
+            }else{
+              alert('Faltan campos a completar!')
+            }
+          }
+        }
         />
         <div>
           <span>barra de progreso</span>

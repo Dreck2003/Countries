@@ -11,8 +11,6 @@ const Information=({info})=>{
         <h3>Description:</h3>
             {/* {console.log('se monto el info')} */}
         <dl>
-          {/* <dt>Name Official:</dt>
-          <dd>{info.nameOficial}</dd> */}
           <dt>Continente:</dt>
           <dd>{info.continent}</dd>
           <dt>Subregion:</dt>

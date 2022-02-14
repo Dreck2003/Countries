@@ -5,8 +5,12 @@ const ShowActivities=(props)=>{
 
     return (
       <Activities>
-        {props.actividades ? (
-          <h1>{props.activities}</h1>
+        {/* {console.log("info activityes: ", props.activities)} */}
+        {props.activities && props.activities.length ? (
+          <section>
+            {Array.isArray(props.activities) &&
+              props.activities.map((act,index) => <h3 key={index}>{act.name}</h3>)}
+          </section>
         ) : (
           <h1>NO HAY ACTIVIDADES PARA ESTE COUNTRY</h1>
         )}

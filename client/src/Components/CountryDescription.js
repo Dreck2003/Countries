@@ -26,17 +26,19 @@ function CountryDescription(props) {
     <Main>
       {console.log("se monto el card")}
       <section>
-        <div> 
+        <div>
           <img src={estado.img} alt="flag" />
         </div>
-        <ShowActivities activities={estado.activities}/>
+        <ShowActivities activities={ estado.activities} />
       </section>
       <Information info={{ ...estado }} />
 
-      <button onClick={(e) => {
-        viewEstado.name='';
-        dispatch(filter(viewEstado))}
-        }>
+      <button
+        onClick={(e) => {
+          viewEstado.name = "";
+          dispatch(filter(viewEstado));
+        }}
+      >
         <Link to="/home">BACK</Link>
       </button>
     </Main>
@@ -95,26 +97,6 @@ const Main = styled.section`
   
 `;
 
-
-
-/* fetch(`https://restcountries.com/v3.1/name/${name}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data[0]);
-        let res = data[0];
-        setDatos({
-          ...datos,
-          flag: res.flags.png,
-          name: res.name.common,
-          nameOficial: res.name.official,
-          continent: res.continents[0],
-          subregion: res.subregion,
-          capital: res.capital[0],
-          poblacion: res.population,
-          area: res.area / 1000,
-          borders: res.borders || [],
-        });
-      }); */
 
 
 export default CountryDescription;

@@ -1,7 +1,8 @@
 
 const {Router}= require('express');
 const express = require('express');
-const {Countries} = require('../db.js')
+const {Countries,Activities} = require('../db.js')
+
 
 
 const IDCountry=express.Router();
@@ -20,19 +21,17 @@ IDCountry.get('/countries/:idPais',(req,res,next) => {
     }
 
     return Countries.findOne({
-        where:{
-            id:idPais
-        }
-    })
-    .then(country => {
+      include: Activities,
+      where: {
+        id: idPais,
+      },
+    }).then((country) => {
+      if (country === null) {
+        return res.status("404").json({ mess: "the country does not exist" });
+      }
 
-        if(country===null){
-            return res.status('404').json({ mess: "the country does not exist" });
-        }
-        
-        return res.json(country)
-
-    })
+      return res.json(country);
+    });
 
 })
 
