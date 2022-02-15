@@ -3,15 +3,14 @@ const {Router}= require("express");
 const express = require('express');
 const {Op} = require('sequelize')
 const axios = require("axios");
-console.log('ELos modelos son: ',Countries.create,Activities.create);
+console.log('ELos modelos son: ',Countries,Activities);
 
 function getCountries() {
   axios
     .get("https://restcountries.com/v3/all")
     .then((data) => {
       //Aca tendria que guardar los datos en mi database
-      try {
-        try {
+
           data.data.forEach((country) => {
             if (Array.isArray(country)) console.log(country);
             // console.log(country);
@@ -29,22 +28,21 @@ function getCountries() {
                 : "There is no subregion",
               area: country.area ? country.area : "There is no area",
               population: country.population ? country.population : 0,
-            }).catch((err) => {
-              console.log("EL PAIS DEL ERROR ES: ", country);
+            })
+            .then(data=>{
+              console.log('Se creo el pais')
+            })
+            .catch((err) => {
+              // console.log("EL PAIS DEL ERROR ES: ", country);
               console.log("SUCEDIO UN GRAVISIMO ERROR", err);
             });
           });
-        } catch (error) {
-          console.log("el error es: ", error);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+     
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('algo sucedio en el pedido: ',err));
 }
 
-getCountries();
+
 
 
 const returnOrder=(order)=>{
@@ -82,6 +80,14 @@ const returnOrder=(order)=>{
 
 }
 
+try{
+    getCountries();
+
+}catch(e){
+  conosle.log('error en traer paises: ',e)
+}
+
+
 
 const nameCountry=express.Router();
 
@@ -89,6 +95,7 @@ const nameCountry=express.Router();
 //ESTA RUTA ES PARA TRER EL NOMBRE A BUSCAR POR QUERIES
 
 nameCountry.get("/countries", (req, res, next) => {
+
 
     console.log('paso por el nameCountry');
 
@@ -98,7 +105,7 @@ nameCountry.get("/countries", (req, res, next) => {
 
     return Countries.findAll({
       order:returnOrder(order),
-      include: Activities,
+      // include: Activities,
       where: {
             name: {
               [Op.iLike]: name ? `%${name}%` : "%%",
@@ -109,7 +116,7 @@ nameCountry.get("/countries", (req, res, next) => {
           },
     })
       .then((countries) => {
-        // console.log("backend: ", countries);
+        // console.log("backend countries :  ", countries);
         return res.status(200).json(countries);
       })
       .catch((err) => {

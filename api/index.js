@@ -37,4 +37,7 @@ conn.sync({ force: true }).then(() => {
 });
 
 
+module.exports ={server,conn}
+
+
 

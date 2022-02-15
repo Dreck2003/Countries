@@ -35,6 +35,15 @@ module.exports = (sequelize) => {
           let ultimo = nombre.slice(1);
           return first + ultimo;
         },
+        validate:{
+          isVacio(valor){
+            // console.log(valor)
+            if(valor.trim().length < 1){
+              // throw  new Error("El nombre no puede ser vacio")
+              return new Error("El nombre no puede ser vacio");
+            }
+          }
+        }
       },
       img: {
         type: DataTypes.STRING,

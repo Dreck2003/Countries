@@ -16,6 +16,7 @@ const Select=(props)=>{
             console.log('valor del evento: ',e.target,' : ',e.target.value);
             if(props.envio){
               // console.log('se ejecuta el envio de actividades')
+              console.log('El valor del activity es: ',e.target.value)
               if(e.target.value==='Activity' && props.metodo && props.estado){
 
                 dispatch(props.metodo(props.estado));
@@ -33,7 +34,7 @@ const Select=(props)=>{
             {props.label && <option>{props.label}</option>}
             {props.menu &&
               props.menu.map((item, index) => (
-                <option key={Math.random()+index}>{item}</option>
+                <option key={index}>{item}</option>
               ))}
           </select>
         </div>
