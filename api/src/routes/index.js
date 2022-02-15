@@ -1,7 +1,7 @@
 const { Router, application } = require('express');
-const allRouter = require('./allCountries');
-const IDCountry = require('./IDCountry');
-const nameCountry = require('./nameCoun');
+// const allRouter = require('./allCountries.js');
+const IDCountry = require('./IDCountry.js');
+const nameCountry = require('./nameCoun.js');
 const activity= require('./activity.js');
 
 
@@ -30,12 +30,6 @@ router.use((error,req,res,next) => {
     })
    
 })
-
-
-
-
-
-
 
 
 

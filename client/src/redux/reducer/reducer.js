@@ -36,6 +36,7 @@ const initialState = {
     switch (action.type) {
 
       case GET_ID_COUNTRY:
+        console.log('se trajo el country: ',action.payload);
         return {
           ...state,
           country: {
@@ -141,7 +142,7 @@ const initialState = {
         console.log(action.payload)
 
         action.payload.forEach(activ=>{
-          arrayAct=arrayAct.concat(activ.countries);
+          arrayAct=arrayAct.concat(activ.Countries);
         })
         console.log('EL nuevo array con los ocuntries: ',arrayAct);
 

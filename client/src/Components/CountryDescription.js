@@ -25,11 +25,12 @@ function CountryDescription(props) {
   return (
     <Main>
       {console.log("se monto el card")}
+      {console.log("las actividades del card: ", estado.Activities)}
       <section>
         <div>
           <img src={estado.img} alt="flag" />
         </div>
-        <ShowActivities activities={ estado.activities} />
+        <ShowActivities activities={estado.Activities} />
       </section>
       <Information info={{ ...estado }} />
 

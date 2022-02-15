@@ -4,7 +4,8 @@ const {Router} = require('express');
 const axios = require('axios');
 const express=require('express');
 
-const{Countries} = require('../db');
+const {Countries,Activities}= require('../db.js');
+console.log('Countries es: ',Activities,Countries)
 
 
 //Funcion para traerme todos los countries.
@@ -52,27 +53,29 @@ const{Countries} = require('../db');
         .catch(err =>console.log(err))
 
 }
-GetCountries();
+
+  GetCountries();
 
 
 const allCountries=express.Router();
 
-allCountries.get('/countries',(req,res,next)=>{
+// allCountries.get('/countries',(req,res,next)=>{
   
-  console.log('allCountry , req.QUERY:  ',req.query);
-  console.log("el numero de props del objeto: ", Object.keys(req.query).length);
+//   // console.log('allCountry , req.QUERY:  ',req.query);
+//   // console.log("el numero de props del objeto: ", Object.keys(req.query).length);
 
-  if (Object.keys(req.query).length != 0 ) return next();
+//   // if (Object.keys(req.query).length != 0 ) return next();
 
-  console.log('se pide mas countries')
+//   // console.log('se pide mas countries')
 
-    return Countries.findAll() 
-        .then(country => {
-            res.send(country); 
-        })
-        .catch(err => next(err))
+//   //   return Countries.findAll() 
+//   //       .then(country => {
+//   //           res.status('200').json(country); 
+//   //       })
+//   //       .catch(err => next(err))
+//  return 
 
-})
+// })
 
 
 module.exports = allCountries;

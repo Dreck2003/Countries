@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
   // defino el modelo
 
   sequelize.define(
-    "countries",
+    "Countries",
     {
       id: {
         primaryKey: true,

@@ -42,20 +42,23 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Activities,Countries } = sequelize.models;
 
-  // console.log("Modelos: ", Activity, Country);
-
-
-
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
 
 Activities.belongsToMany(Countries, { through: "Activities_Country" });
 Countries.belongsToMany(Activities, { through: "Activities_Country" });
 
-  console.log('Modelos: ',sequelize.models);
+  // console.log('Modelos: ',sequelize.models);
+
+  console.log("Modelos: ",typeof Activities,typeof Countries);
+
+
 
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Activity, Country } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  // ...sequelize.models,
+  Activities: Activities,
+  Countries: Countries, // para poder importar los modelos así: const { Activity, Country } = require('./db.js');
+  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
